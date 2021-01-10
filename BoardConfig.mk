@@ -80,7 +80,6 @@ RECOVERY_SDCARD_ON_DATA := true
 # TWRP
 TW_EXTRA_LANGUAGES := true
 TW_THEME := portrait_hdpi
-TW_USE_TOOLBOX := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/etc/twrp.fstab
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_EXCLUDE_TWRPAPP := true
