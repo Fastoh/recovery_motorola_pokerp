@@ -106,74 +106,69 @@ on property:sys.usb.config=none && property:sys.usb.configfs=1
     rm /config/usb_gadget/g1/configs/b.1/f5
     write /sys/devices/platform/mt_usb/saving 0
 
+### main function : mass_storage ###
+on property:sys.usb.config=mass_storage && property:vendor.usb.acm_cnt=0 && \
+property:sys.usb.configfs=1
+    setprop vendor.usb.pid 0x2002
+on property:sys.usb.config=mass_storage && property:vendor.usb.acm_cnt=1 && \
+property:sys.usb.configfs=1
+    setprop vendor.usb.pid 0x200F
+    setprop vendor.usb.acm_port1 ""
+on property:sys.usb.config=mass_storage && property:vendor.usb.acm_cnt=2 && \
+property:sys.usb.configfs=1
+    setprop vendor.usb.pid 0x202D
 
-on post-fs-data
-    chown system system /sys/class/android_usb/android0/f_mass_storage/lun/file
-    chmod 0660 /sys/class/android_usb/android0/f_mass_storage/lun/file
-    chown system system /sys/class/android_usb/android0/f_rndis/ethaddr
-    chmod 0660 /sys/class/android_usb/android0/f_rndis/ethaddr
-    mkdir /data/misc/adb 02750 system shell
-    mkdir /data/adb 0700 root root
-
-# adbd is controlled via property triggers in init.<platform>.usb.rc
-service adbd /system/bin/adbd --root_seclabel=u:r:su:s0
-    class core
-    socket adbd stream 660 system system
-    disabled
-    seclabel u:r:adbd:s0
-
-on boot
-    setprop sys.usb.configfs 0
-
-
-# USB accessory configuration
-on property:sys.usb.config=accessory && property:sys.usb.configfs=0
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 18d1
-    write /sys/class/android_usb/android0/idProduct 2d00
-    write /sys/class/android_usb/android0/functions ${sys.usb.config}
-    write /sys/class/android_usb/android0/enable 1
+on property:sys.usb.config=mass_storage && property:vendor.usb.acm_enable=1 && \
+property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "ums_acm"
+    write /config/usb_gadget/g1/idProduct ${vendor.usb.pid}
+    write /sys/devices/platform/mt_usb/saving 1
+    symlink /config/usb_gadget/g1/functions/mass_storage.usb0 /config/usb_gadget/g1/configs/b.1/f1
+    symlink /config/usb_gadget/g1/functions/acm.gs${vendor.usb.acm_port0} /config/usb_gadget/g1/configs/b.1/f2
+    symlink /config/usb_gadget/g1/functions/acm.gs${vendor.usb.acm_port1} /config/usb_gadget/g1/configs/b.1/f3
+    write /config/usb_gadget/g1/UDC ${vendor.usb.controller}
     setprop sys.usb.state ${sys.usb.config}
 
-# USB accessory configuration, with adb
-on property:sys.usb.config=accessory,adb && property:sys.usb.configfs=0
-    write /sys/class/android_usb/android0/enable 0
-    write /sys/class/android_usb/android0/idVendor 18d1
-    write /sys/class/android_usb/android0/idProduct 2d01
-    write /sys/class/android_usb/android0/functions ${sys.usb.config}
-    write /sys/class/android_usb/android0/enable 1
+on property:sys.usb.config=mass_storage && property:vendor.usb.acm_enable=0 && \
+property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "ums"
+    write /config/usb_gadget/g1/idProduct ${vendor.usb.pid}
+    symlink /config/usb_gadget/g1/functions/mass_storage.usb0 /config/usb_gadget/g1/configs/b.1/f1
+    write /config/usb_gadget/g1/UDC ${vendor.usb.controller}
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=mass_storage,adb && property:vendor.usb.acm_cnt=0 && \
+property:sys.usb.configfs=1
+    setprop vendor.usb.pid 0x2003
+on property:sys.usb.config=mass_storage,adb && property:vendor.usb.acm_cnt=1 && \
+property:sys.usb.configfs=1
+    setprop vendor.usb.pid 0x2006
+    setprop vendor.usb.acm_port1 ""
+on property:sys.usb.config=mass_storage,adb && property:vendor.usb.acm_cnt=2 && \
+property:sys.usb.configfs=1
+    setprop vendor.usb.pid 0x2029
+
+on property:sys.usb.config=mass_storage,adb && property:sys.usb.configfs=1
     start adbd
+
+on property:sys.usb.ffs.ready=1 && property:sys.usb.config=mass_storage,adb && \
+property:vendor.usb.acm_enable=1 && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "ums_adb_acm"
+    write /config/usb_gadget/g1/idProduct ${vendor.usb.pid}
+    write /sys/devices/platform/mt_usb/saving 1
+    symlink /config/usb_gadget/g1/functions/mass_storage.usb0 /config/usb_gadget/g1/configs/b.1/f1
+    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f2
+    symlink /config/usb_gadget/g1/functions/acm.gs${vendor.usb.acm_port0} /config/usb_gadget/g1/configs/b.1/f3
+    symlink /config/usb_gadget/g1/functions/acm.gs${vendor.usb.acm_port1} /config/usb_gadget/g1/configs/b.1/f4
+    write /config/usb_gadget/g1/UDC ${vendor.usb.controller}
     setprop sys.usb.state ${sys.usb.config}
 
+on property:sys.usb.ffs.ready=1 && property:sys.usb.config=mass_storage,adb && \
+property:vendor.usb.acm_enable=0 && property:sys.usb.configfs=1
+    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "ums_adb"
+    write /config/usb_gadget/g1/idProduct ${vendor.usb.pid}
+    symlink /config/usb_gadget/g1/functions/mass_storage.usb0 /config/usb_gadget/g1/configs/b.1/f1
+    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f2
+    write /config/usb_gadget/g1/UDC ${vendor.usb.controller}
+    setprop sys.usb.state ${sys.usb.config}
 
-# Used to set USB configuration at boot and to switch the configuration
-# when changing the default configuration
-on boot && property:persist.sys.usb.config=*
-    setprop sys.usb.config ${persist.sys.usb.config}
-
-
-on property:sys.usb.typec.mode=dfp
-    write /sys/class/dual_role_usb/otg_default/mode ${sys.usb.typec.mode}
-    setprop sys.usb.typec.state ${sys.usb.typec.mode}
-
-on property:sys.usb.typec.mode=ufp
-    write /sys/class/dual_role_usb/otg_default/mode ${sys.usb.typec.mode}
-    setprop sys.usb.typec.state ${sys.usb.typec.mode}
-
-# USB data role changes
-on property:sys.usb.typec.data_role=device
-    write /sys/class/dual_role_usb/otg_default/data_role ${sys.usb.typec.data_role}
-    setprop sys.usb.typec.state ${sys.usb.typec.data_role}
-
-on property:sys.usb.typec.data_role=host
-    write /sys/class/dual_role_usb/otg_default/data_role ${sys.usb.typec.data_role}
-    setprop sys.usb.typec.state ${sys.usb.typec.data_role}
-
-# USB power role changes
-on property:sys.usb.typec.power_role=source
-    write /sys/class/dual_role_usb/otg_default/power_role ${sys.usb.typec.power_role}
-    setprop sys.usb.typec.state ${sys.usb.typec.power_role}
-
-on property:sys.usb.typec.power_role=sink
-    write /sys/class/dual_role_usb/otg_default/power_role ${sys.usb.typec.power_role}
-    setprop sys.usb.typec.state ${sys.usb.typec.power_role}
