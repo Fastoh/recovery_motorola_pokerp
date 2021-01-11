@@ -85,8 +85,5 @@ TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_EXCLUDE_TWRPAPP := true
 TW_SCREEN_BLANK_ON_BOOT := true
 
-# Verity
-BOARD_AVB_ENABLE := true
-
 # Workaround for error copying vendor files to recovery ramdisk
 TARGET_COPY_OUT_VENDOR := vendor
