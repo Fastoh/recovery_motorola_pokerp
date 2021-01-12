@@ -1,2 +1,6 @@
 [
+ {
+   "repository": "kernel_motorola_pokerp",
+   "target_path": "kernel/motorola/pokerp"
+ }
 ]
