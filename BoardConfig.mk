@@ -92,7 +92,9 @@ TW_INCLUDE_CRYPTO := true
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 BOARD_SUPPRESS_SECURE_ERASE := true
 
-
-
 # Workaround for error copying vendor files to recovery ramdisk
 TARGET_COPY_OUT_VENDOR := vendor
+
+# Resolution
+TARGET_SCREEN_WIDTH := 720
+TARGET_SCREEN_HEIGHT := 1560

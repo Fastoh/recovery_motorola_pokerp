@@ -1,5 +1,5 @@
 #
-# Copyright 2017 The Android Open Source Project
+# Copyright 2017-2021 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,16 +14,15 @@
 # limitations under the License.
 #
 
-# Inherit from our custom product configuration
+# Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+
+# Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
 
+# Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := pokerp
 PRODUCT_NAME := omni_pokerp
-PRODUCT_BRAND := xiaomi
-PRODUCT_MODEL := moto e(6) plus
+PRODUCT_BRAND := Motorola
+PRODUCT_MODEL := Moto E(6) Plus
 PRODUCT_MANUFACTURER := Motorola
-
-# Resolution
-TARGET_SCREEN_WIDTH := 720
-TARGET_SCREEN_HEIGHT := 1560
