@@ -76,6 +76,8 @@ RECOVERY_SDCARD_ON_DATA := true
 # TWRP
 TW_EXTRA_LANGUAGES := true
 TW_THEME := portrait_hdpi
+DEVICE_SCREEN_WIDTH := 720
+DEVICE_SCREEN_HEIGHT := 1560
 TW_USE_TOOLBOX := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/etc/twrp.fstab
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
@@ -85,7 +87,8 @@ TW_EXCLUDE_DEFAULT_USB_INIT := true
 TWRP_INCLUDE_LOGCAT := true
 TW_INCLUDE_FB2PNG := true
 
-
+# system.prop
+TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
 # Workaround for error copying vendor files to recovery ramdisk
 TARGET_COPY_OUT_VENDOR := vendor
