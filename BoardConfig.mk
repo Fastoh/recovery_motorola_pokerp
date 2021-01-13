@@ -92,3 +92,7 @@ TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
 # Workaround for error copying vendor files to recovery ramdisk
 TARGET_COPY_OUT_VENDOR := vendor
+
+
+# For building with minimal manifest
+ALLOW_MISSING_DEPENDENCIES := true
