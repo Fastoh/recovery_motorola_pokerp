@@ -17,8 +17,8 @@
 DEVICE_PATH := device/motorola/pokerp
 
 # Platform
-TARGET_BOARD_PLATFORM := mt6765
-TARGET_BOOTLOADER_BOARD_NAME := mt6765
+TARGET_BOARD_PLATFORM := mt6762
+TARGET_BOOTLOADER_BOARD_NAME := mt6762
 TARGET_NO_BOOTLOADER := true
 
 # Architecture
@@ -96,3 +96,17 @@ TARGET_COPY_OUT_VENDOR := vendor
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
+
+
+# MTK Hardware
+BOARD_HAS_MTK_HARDWARE := true
+BOARD_USES_MTK_HARDWARE := true
+MTK_HARDWARE := true
+
+# Keymaster
+TARGET_PROVIDES_KEYMASTER := true
+
+# Crypto
+TARGET_HW_DISK_ENCRYPTION := true
+TW_INCLUDE_CRYPTO := true
+TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/commonsys/cryptfs_hw
