@@ -36,7 +36,6 @@ fi
 if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export FOX_VERSION="11.0"
 	export OF_MAINTAINER="LichtEstarossx"
-	export FOX_BUILD_TYPE="Stable"
         export PLATFORM_VERSION="16.1.0"
    	export PLATFORM_SECURITY_PATCH="2099-12-31"
    	export TW_DEFAULT_LANGUAGE="en"
