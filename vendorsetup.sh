@@ -34,28 +34,28 @@ if [ -z "$1" -a -z "$FOX_BUILD_DEVICE" ]; then
 fi
 
 if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
-	export FOX_VERSION="11.0"
+	export FOX_VERSION="11"
 	export OF_MAINTAINER="LichtEstarossx"
+        export FOX_BUILD_TYPE="Unofficial"
         export PLATFORM_VERSION="16.1.0"
    	export PLATFORM_SECURITY_PATCH="2099-12-31"
    	export TW_DEFAULT_LANGUAGE="en"
         export OF_FLASHLIGHT_ENABLE="1"
-	export OF_KEEP_FORCED_ENCRYPTION="1"
-	export OF_PATCH_AVB20="0"
-        export OF_SCREEN_H="2280"
+	export OF_PATCH_AVB20="1"
+        export OF_DISABLE_DM_VERITY_FORCED_ENCRYPTION="1"
+	export OF_SCREEN_H="2280"
         export OF_STATUS_H="83"
         export OF_STATUS_INDENT_LEFT="52"
         export OF_STATUS_INDENT_RIGHT="52"
 	export OF_HIDE_NOTCH="1"
+	export OF_NO_SPLASH_CHANGE="1"
 	export OF_AB_DEVICE="1"
 	export OF_FLASHLIGHT_ENABLE="0"
 	export FOX_REMOVE_AAPT="1"
 	export OF_DISABLE_UPDATEZIP="1"
 	export OF_USE_MAGISKBOOT="1"
 	export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES="1"
-	export OF_DONT_PATCH_ENCRYPTED_DEVICE="1"
 	export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER="1"
-	export OF_NO_TREBLE_COMPATIBILITY_CHECK="1"
 	#export OF_FORCE_MAGISKBOOT_BOOT_PATCH_MIUI=1; # if you disable this, then enable the next line
 
 	export FOX_USE_BASH_SHELL="0"
@@ -74,7 +74,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 
         # -- add settings for R11 --
         export FOX_R11="1"
-        export FOX_ADVANCED_SECURITY="1"
+        export FOX_ADVANCED_SECURITY="0"
         export OF_USE_TWRP_SAR_DETECT="1"
 	export OF_USE_TWRP_SAR_DETECT="1"
         export OF_DISABLE_MIUI_OTA_BY_DEFAULT="1"
