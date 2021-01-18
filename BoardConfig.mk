@@ -77,9 +77,8 @@ RECOVERY_SDCARD_ON_DATA := true
 TW_EXTRA_LANGUAGES := true
 TW_THEME := portrait_hdpi
 DEVICE_SCREEN_WIDTH := 720
-DEVICE_SCREEN_HEIGHT := 1560
-RECOVERY_GRAPHICS_USE_LINELENGTH 
-TW_BRIGHTNESS_PATH := /sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness
+DEVICE_SCREEN_HEIGHT := 1560 
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 100
 TW_EXCLUDE_SUPERSU := true
@@ -92,7 +91,6 @@ TWRP_INCLUDE_LOGCAT := true
 TW_INCLUDE_FB2PNG := true
 TW_HAS_MTP := true
 TW_MTP_DEVICE := /dev/mtp_usb
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto/gadget/lun%d/file
 
 # Workaround for error copying vendor files to recovery ramdisk
 TARGET_COPY_OUT_VENDOR := vendor
