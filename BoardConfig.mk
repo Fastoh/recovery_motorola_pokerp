@@ -69,15 +69,6 @@ BOARD_KERNEL_IMAGE_NAME := zImage
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 
-# Kernel CMDLINE
-BOARD_KERNEL_CMDLINE += androidboot.console=ttyMSM0
-BOARD_KERNEL_CMDLINE += androidboot.configfs=true
-BOARD_KERNEL_CMDLINE += androidboot.usbcontroller=a600000.dwc3
-BOARD_KERNEL_CMDLINE += swiotlb=1
-BOARD_KERNEL_CMDLINE += firmware_class.path=/vendor/firmware_mnt/image
-BOARD_KERNEL_CMDLINE += loop.max_part=7
-BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
-
 # Make boot image arguments
 BOARD_MKBOOTIMG_ARGS := --base $(BOARD_KERNEL_BASE) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --second_offset $(BOARD_SECOND_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
@@ -104,9 +95,6 @@ TW_INCLUDE_FB2PNG := true
 BOARD_SUPPRESS_SECURE_ERASE := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TARGET_USES_MKE2FS := true
-
-# Recovery device modules
-TARGET_RECOVERY_DEVICE_MODULES += android.hardware.boot@1.0
 
 
 # Workaround for error copying vendor files to recovery ramdisk
