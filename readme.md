@@ -7,7 +7,7 @@ CPU     | Octa-core 2.0 GHz Cortex-A53
 Chipset | Mediatek MT6762 Helio P22
 GPU     | 650MHz PowerVR GE8320
 Memory  | 2/4 GB
-Shipped Android Version | 9.0 Moto Pure
+Shipped Android Version | 9.0 AOSP (No Moto Pure)
 Storage | 32/64 GB
 MicroSD | Up to 512 GB
 Battery | 3000 mAh (removable)
