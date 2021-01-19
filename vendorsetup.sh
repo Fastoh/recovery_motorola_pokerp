@@ -40,9 +40,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
         export PLATFORM_VERSION="16.1.0"
    	export PLATFORM_SECURITY_PATCH="2099-12-31"
    	export TW_DEFAULT_LANGUAGE="en"
-        export OF_FLASHLIGHT_ENABLE="1"
-	export OF_PATCH_AVB20="1"
-        export OF_DISABLE_DM_VERITY_FORCED_ENCRYPTION="1"
+        export OF_FLASHLIGHT_ENABLE="0"
 	export OF_SCREEN_H="2280"
         export OF_STATUS_H="83"
         export OF_STATUS_INDENT_LEFT="52"
@@ -50,11 +48,6 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_HIDE_NOTCH="1"
 	export OF_NO_SPLASH_CHANGE="1"
 	export OF_AB_DEVICE="1"
-	export OF_FLASHLIGHT_ENABLE="0"
-	export FOX_REMOVE_AAPT="1"
-	export OF_DISABLE_UPDATEZIP="1"
-	export OF_USE_MAGISKBOOT="1"
-	export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES="1"
 	export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER="1"
 	#export OF_FORCE_MAGISKBOOT_BOOT_PATCH_MIUI=1; # if you disable this, then enable the next line
 
@@ -67,6 +60,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_USE_NEW_MAGISKBOOT="1"
 	export OF_SKIP_MULTIUSER_FOLDERS_BACKUP="1"
 	export OF_VANILLA_BUILD="1"
+	export OF_DISABLE_UPDATEZIP="1"
 
 	# OTA for custom ROMs
         export OF_SUPPORT_ALL_BLOCK_OTA_UPDATES="1"
