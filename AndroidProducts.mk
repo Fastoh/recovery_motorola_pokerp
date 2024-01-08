@@ -14,6 +14,7 @@
 # limitations under the License.
 #
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_pokerp.mk
+LOCAL_PATH := device/motorola/omni_pokerp.mk/
+
+PRODUCT_MAKEFILES := $(LOCAL_PATH)/omni_pokerp.mk
 
